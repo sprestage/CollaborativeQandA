@@ -80,29 +80,28 @@ Ok, all the collaboration stuff works.  Time to implement users, sign-in, sign-u
 
 Use devise.
 
+Add to Gemfile:
+  gem 'devise'
+  gem 'omniauth'
+  gem 'bcrypt-ruby'
 
+Run bundle.
+  > bundle
 
+Do the devise generates.  First generate the initializer to describe all devise config options.
 
-  > rails g scaffold item --no-test-framework --no-assets --no-stylesheets --no-scss name:string
+  > rails generate devise:install
 
-  > rails g mini_test:feature ItemShowIndex
-  > rails g mini_test:feature ItemShow
-  > rails g mini_test:feature ItemCreate
+Now, generate the devise model
+  > rails generate devise User
 
-Add Items to the DB:
+Check the migration created.  Also check the user.rb file.  Then migrate.
   > rake db:migrate
 
-Add name column to Items in DB:
-  > rails g migration AddNameToItems name:string
-  > rake db:migrate
+This will be needed to configure the views.
+  > rails generate devise:views
 
-Add Item name to display on /items/new page
 
-Edit all the 5 /views/items/*.html.erb to display the fields from the models.
-
-All green!  Add the final 2 tests
-  > rails g mini_test:feature ItemUpdate
-  > rails g mini_test:feature ItemDelete
 
 Ok, done for now.  Time to start implementing the nested resources.  Woot!
 
