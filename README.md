@@ -76,9 +76,12 @@ Also remember to add to the rakefile: MiniTest::Rails::Testing.default_tasks << 
 Update the /app/views/collaborations/*.html.erb
 Update the /app/models/collaboration.rb
 
+Ok, all the collaboration stuff works.  Time to implement users, sign-in, sign-up, sign-out.
+
+Use devise.
 
 
-Ok, all List stuff works.  Time to implement items:
+
 
   > rails g scaffold item --no-test-framework --no-assets --no-stylesheets --no-scss name:string
 
