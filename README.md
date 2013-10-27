@@ -31,4 +31,88 @@ Edit Gemfile for some useful debugging gems
 
 Tuck away RAILS_SECRET from /config/initializer/secret_token.rb to /config/application.yml and add /config/application.yml to .gitignore.
 
+Ok, now we create the scaffold for the new resource, User.
+
+  > rails g scaffold collaboration --no-test-framework --no-assets --no-stylesheets --no-scss question:text answer:text
+
+Somehow, the above doesn't successfully create the name column, so I generated an additional migration to add the list name.
+
+  > rails generate migration AddDetailsToCollaborations question:text answer:text
+  > rake db:migrate
+
+Alternately, I should probably create all the tests first, but I feel so lost without the stuff there first, ya know.
+
+Create the tests, starting with show index of lists, show single list, and create list.  I played with this to create the files,
+then I completely replaced what was in the files.
+  > rails g mini_test:feature CollaborationShowIndex
+  > rails g mini_test:feature CollaborationShow
+  > rails g mini_test:feature CollaborationCreate
+  > rails g mini_test:feature CollaborationUpate
+  > rails g mini_test:feature CollaborationDelete
+
+Ok, now time to run the tests.
+
+First, some quick BDD sanity checking.  Let's fire up the server and see what we can learn.
+
+  > rails s
+
+Hmm, no route to /.  Add the root route 'root :to => 'home#index' to /config/routes.rb
+
+Ok, what next.  Keep browsing.  Ahhhh.  Home controller is missing.  I remain confused why this isn't created with the initial rails install, but there you go.  Ok, create a /app/controllers/home_controller.rb.  Add a stub for index:
+
+  class HomeController < ApplicationController
+    def index
+    end
+  end
+
+All the browsing seems in order now.  Time to get the tests running.
+
+Also, need a /app/views/home/ folder and an /app/views/home/index.html.erb file since I deleted the one in /public right after creating the default rails app.  :)
+
+Don't forget to add fixture support to the /test/minitest_helper.rb file!  And the other stuff!
+
+Also remember to add to the rakefile: MiniTest::Rails::Testing.default_tasks << 'features'
+
+Update the /app/views/collaborations/*.html.erb
+Update the /app/models/collaboration.rb
+
+
+
+Ok, all List stuff works.  Time to implement items:
+
+  > rails g scaffold item --no-test-framework --no-assets --no-stylesheets --no-scss name:string
+
+  > rails g mini_test:feature ItemShowIndex
+  > rails g mini_test:feature ItemShow
+  > rails g mini_test:feature ItemCreate
+
+Add Items to the DB:
+  > rake db:migrate
+
+Add name column to Items in DB:
+  > rails g migration AddNameToItems name:string
+  > rake db:migrate
+
+Add Item name to display on /items/new page
+
+Edit all the 5 /views/items/*.html.erb to display the fields from the models.
+
+All green!  Add the final 2 tests
+  > rails g mini_test:feature ItemUpdate
+  > rails g mini_test:feature ItemDelete
+
+Ok, done for now.  Time to start implementing the nested resources.  Woot!
+
+  > rails generate migration AddListIdToItems list_id:integer
+
+Check the migration file, then
+  > rake db:migrate
+  > rake db:test:prepare
+
+Best ever nested resource code examples: http://blog.8thcolor.com/2011/08/nested-resources-with-independent-views-in-ruby-on-rails/
+
+Whew!  So much tweaking of the Items controller, the views (of the Items and of Show Lists), and the Item tests.  Getting
+these paths correct was brutal.  I'm glad I've got it done and locked down in github for reference.
+
+
 

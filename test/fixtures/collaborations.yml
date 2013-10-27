@@ -1,0 +1,16 @@
+question01:
+ question: Is this a question?
+ answer: This may be an answer.
+
+question02:
+ question: Is this an unanswered question?
+ answer:
+
+question03:
+ question: Should I use faker?
+ answer: No. Keep it simple.
+
+question04:
+ question: Is there a trap here?
+ answer: Yes.  Avoid commas in fixtures.
+

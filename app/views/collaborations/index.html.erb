@@ -1,0 +1,25 @@
+<h1>Listing Q & A Collaborations</h1>
+
+<table>
+  <tr>
+    <th>Question</th>
+    <th>Answer</th>
+    <th></th>
+  </tr>
+
+<% @collaborations.each do |collaboration| %>
+  <tr>
+    <td><%= collaboration.question %></td>
+    <td><%= collaboration.answer %></td>
+    <td><%= link_to 'Show', collaboration %></td>
+    <td><%= link_to 'Edit', edit_collaboration_path(collaboration) %></td>
+    <td><%= link_to 'Destroy', collaboration, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<div class="section-colored text-center">
+  <%= link_to 'New Q & A Collaboration', new_collaboration_path %>
+</div>
