@@ -101,20 +101,6 @@ Check the migration created.  Also check the user.rb file.  Then migrate.
 This will be needed to configure the views.
   > rails generate devise:views
 
+Ok, done with Users and Collaborations.  Check in and move on to has_and_belongs_to_many.
 
-
-Ok, done for now.  Time to start implementing the nested resources.  Woot!
-
-  > rails generate migration AddListIdToItems list_id:integer
-
-Check the migration file, then
-  > rake db:migrate
-  > rake db:test:prepare
-
-Best ever nested resource code examples: http://blog.8thcolor.com/2011/08/nested-resources-with-independent-views-in-ruby-on-rails/
-
-Whew!  So much tweaking of the Items controller, the views (of the Items and of Show Lists), and the Item tests.  Getting
-these paths correct was brutal.  I'm glad I've got it done and locked down in github for reference.
-
-
-
+Much later and I've tried very hard and failed to implement has_and_belongs_to_many.  It may be that there is just a little more to learn.  But once I've figured out the controller (Create and Update Collaborations has defeated me), then I'll still need to update the views and the tests, so I feel like I'm a long way off.  Submitting now so I can get help and also move on to the next thing to learn.  Beware, tests are broken at this time.  -sprestage 10/27/13

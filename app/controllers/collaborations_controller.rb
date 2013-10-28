@@ -40,7 +40,13 @@ class CollaborationsController < ApplicationController
   # POST /collaborations
   # POST /collaborations.json
   def create
+    @user = current_user
     @collaboration = Collaboration.new(params[:collaboration])
+    # BUG: Failing to successfully set the IDs so the collaborations know about their users and vice versa.
+    # @user.collaboration_ids += [params[:id]]
+    # binding.pry
+    # @user.collaborations += @collaboration
+    # @collaboration.users << @user
 
     respond_to do |format|
       if @collaboration.save
@@ -56,6 +62,11 @@ class CollaborationsController < ApplicationController
   # PUT /collaborations/1
   # PUT /collaborations/1.json
   def update
+    # BUG: Failing to successfully set the IDs so the collaborations know about their users and vice versa.
+    # @user.collaboration_ids += [params[:id]]
+    # binding.pry
+    # @user.collaborations += @collaboration
+    # @collaboration.users << @user
     @collaboration = Collaboration.find(params[:id])
 
     respond_to do |format|
