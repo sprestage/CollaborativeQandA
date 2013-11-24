@@ -21,7 +21,7 @@ Implementation
 =======
 This is a simple rails app, with a pair of nested resources, Lists and Items.  Each list has many items.  Each item belongs to one list.
 
-  > rails _3.2.15_ new CollaborativeQandA --skip-test-unit
+  > rails \_3.2.15\_ new CollaborativeQandA --skip-test-unit
 
   > cd CollaborativeQandA
 
