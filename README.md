@@ -104,3 +104,9 @@ This will be needed to configure the views.
 Ok, done with Users and Collaborations.  Check in and move on to has_and_belongs_to_many.
 
 Much later and I've tried very hard and failed to implement has_and_belongs_to_many.  It may be that there is just a little more to learn.  But once I've figured out the controller (Create and Update Collaborations has defeated me), then I'll still need to update the views and the tests, so I feel like I'm a long way off.  Submitting now so I can get help and also move on to the next thing to learn.  Beware, tests are broken at this time.  -sprestage 10/27/13
+
+
+Critical Failure
+=======
+
+2 tests pass.  3 tests error out.
